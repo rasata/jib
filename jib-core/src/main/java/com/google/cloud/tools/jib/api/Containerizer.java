@@ -109,7 +109,6 @@ public class Containerizer {
 
     ImageConfiguration imageConfiguration =
         ImageConfiguration.builder(tarImage.getImageReference().get()).build();
-    // ImageConfiguration.builder(tarImage.getImageReference().get()).setTarPath(tarImage.getPath()).build();
 
     Function<BuildContext, StepsRunner> stepsRunnerFactory =
         buildContext -> StepsRunner.begin(buildContext).tarBuildSteps(tarImage.getPath());

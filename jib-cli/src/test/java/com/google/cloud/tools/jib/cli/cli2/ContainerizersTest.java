@@ -161,14 +161,14 @@ public class ContainerizersTest {
   @RunWith(MockitoJUnitRunner.class)
   public static class CrendentialConfigurationTests {
 
-    @Rule public TemporaryFolder testRoot = new TemporaryFolder();
+    @Rule public final TemporaryFolder testRoot = new TemporaryFolder();
 
-    @Mock CredentialRetrieverFactory mockCredentialRetrieverFactory;
-    @Mock CredentialRetriever mockCredentialRetriever;
-    @Mock RegistryImage mockRegistryImage;
+    @Mock private CredentialRetrieverFactory mockCredentialRetrieverFactory;
+    @Mock private CredentialRetriever mockCredentialRetriever;
+    @Mock private RegistryImage mockRegistryImage;
 
-    @Mock CredentialRetriever mockCredentialRetrieverFromPath;
-    @Mock CredentialRetriever mockCredentialRetrieverFromString;
+    @Mock private CredentialRetriever mockCredentialRetrieverFromPath;
+    @Mock private CredentialRetriever mockCredentialRetrieverFromString;
 
     @Before
     public void setupMocks() {
@@ -192,7 +192,7 @@ public class ContainerizersTest {
       Containerizers.applyCredentialConfig(
           mockRegistryImage, mockCredentialRetrieverFactory, buildOptions);
 
-      // verify we added our intended credential helper
+      // verify we added our intended credential retriever
       verify(mockRegistryImage).addCredentialRetriever(mockCredentialRetrieverFromString);
       // auto added credentials
       verify(mockRegistryImage, times(3)).addCredentialRetriever(mockCredentialRetriever);
@@ -211,7 +211,7 @@ public class ContainerizersTest {
       Containerizers.applyCredentialConfig(
           mockRegistryImage, mockCredentialRetrieverFactory, buildOptions);
 
-      // verify we added our intended credential helper
+      // verify we added our intended credential retriever
       verify(mockRegistryImage).addCredentialRetriever(mockCredentialRetrieverFromPath);
       // auto added credentials
       verify(mockRegistryImage, times(3)).addCredentialRetriever(mockCredentialRetriever);
@@ -229,7 +229,7 @@ public class ContainerizersTest {
       Containerizers.applyCredentialConfig(
           mockRegistryImage, mockCredentialRetrieverFactory, buildOptions);
 
-      // verify we added our intended credential helper
+      // verify we added our intended credential retriever
       ArgumentCaptor<CredentialRetriever> captor =
           ArgumentCaptor.forClass(CredentialRetriever.class);
       verify(mockRegistryImage, times(4)).addCredentialRetriever(captor.capture());
@@ -256,7 +256,7 @@ public class ContainerizersTest {
       Containerizers.applyCredentialConfig(
           mockRegistryImage, mockCredentialRetrieverFactory, buildOptions);
 
-      // verify we added our intended credential helper
+      // verify we added our intended credential retriever
       ArgumentCaptor<CredentialRetriever> captor =
           ArgumentCaptor.forClass(CredentialRetriever.class);
       verify(mockRegistryImage, times(4)).addCredentialRetriever(captor.capture());

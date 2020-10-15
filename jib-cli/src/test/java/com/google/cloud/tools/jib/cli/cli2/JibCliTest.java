@@ -288,7 +288,7 @@ public class JibCliTest {
     public String passwordField;
 
     @Test
-    public void testParse_usernameWithoutPassword() {
+    public void testParse_fail() {
       MutuallyExclusiveArgsException meae =
           assertThrows(
               MutuallyExclusiveArgsException.class,
